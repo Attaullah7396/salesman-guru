@@ -1,0 +1,81 @@
+<div id="signUpPage" layout="row">
+    <div flex="15"></div>
+    <div flex="45">
+        <ul>
+            <li ng-repeat="a in home.dataArray">{{a.uName}}</li>
+        </ul>
+    </div>
+
+    <div flex id="signUpBox">
+        <form name="frm">
+            <div layout="row">
+                <md-input-container flex>
+                    <label>First Name</label>
+                    <input type="text" ng-model="home.user.fName"
+                           required/>
+                </md-input-container>
+
+
+                <md-input-container flex>
+                    <label>Last Name</label>
+                    <input type="text" ng-model="home.user.lName" required/>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex>
+                    <label>UserName</label>
+                    <input type="text" ng-model="home.user.uName" required/>
+                </md-input-container>
+
+
+              <!--  <div flex id="adj4">Occupation
+                    <select ng-model="home.user.occupation" required id="select">
+                        <option value="Private Job">Private Job</option>
+                        <option value="Govt. Job">Govt. job</option>
+                        <option value="Self Business">Self Business</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>-->
+
+                <div flex layout-align="center center" style="height: 100px;">
+                    <md-select placeholder="Occupation" required ng-model="home.user.occupation" style="min-width: 200px;">
+                        <md-option value="Private Job">Private Job</md-option>
+                        <md-option value="Govt. Job">Govt. job</md-option>
+                        <md-option value="Self Business">Self Business</md-option>
+                        <md-option value="Other">Other</md-option>
+                    </md-select>
+                </div>
+            </div>
+            <md-input-container flex>
+                <label>Email ID</label>
+                <input type="text" ng-model="home.user.email" required/>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Password</label>
+                <input type="text" ng-model="home.user.pswd"
+                       required/>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>Confirm Password</label>
+                <input type="text" ng-model="home.cpswd"
+                       required/>
+            </md-input-container>
+
+
+            <md-button class="md-raised md-primary" ng-disabled="frm.$invalid"
+                       ng-click="home.submitForm()">Submit
+            </md-button>
+
+            <span ng-show="home.triger1" style="color: red;">&#40 Password does not match &#41</span>
+
+            <span ng-show="home.triger2"><img class="smallImg" src="../../images/correct.png" alt=""/></span>
+
+            <span ng-show="false">&#40 Only admin can add Questions &#41</span>
+        </form>
+    </div>
+
+</div>
+
+
+
