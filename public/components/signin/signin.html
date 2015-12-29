@@ -1,1 +1,46 @@
-I am Signin
+<div id="LoginPage" layout="row">
+    <div flex="30"></div>
+    <div flex>
+        <form name="frm2" style="padding-top: 10%">
+            <fieldset>
+                <legend>Login Here</legend>
+                <md-content style="padding: 8%;padding-top: 10%">
+                    <md-input-container class="md-icon-float md-block">
+                        <label><i class="mdi mdi-email"></i> Email </label>
+                        <input ng-model="signin.user.email" type="email" name="email" required>
+                        <!--
+                                            <span class="right" ng-show="frm2.email.$error.required">Email is required</span>
+                                            <span class="right" ng-show="frm2.email.$error.email">Invalid email address</span>-->
+
+
+                    </md-input-container>
+
+
+                    <md-input-container class="md-icon-float md-block">
+                        <label><i class="mdi mdi-lock"></i> Password </label>
+                        <input ng-model="signin.user.pass" type="password" name="pass" required>
+
+                        <!--  <span ng-show="frm2.pass.$invalid && frm2.pass.$dirty">
+                              <p ng-show="frm2.pass.$error.required" class="required">Password is required</p>
+                          </span>
+      -->
+                    </md-input-container>
+
+                 <span ng-show="signin.circular">
+                    <md-progress-circular class="md-accent" md-mode="indeterminate" class="center_align"
+                                          md-diameter="50"></md-progress-circular>
+                </span>
+
+                    <md-button class="md-raised md-primary" ng-disabled="frm2.$invalid" ng-click="signin.login()">Sign In
+                    </md-button>
+
+
+                </md-content>
+            </fieldset>
+
+        </form>
+    </div>
+
+    <div flex="30"></div>
+
+</div>

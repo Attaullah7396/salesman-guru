@@ -4,13 +4,17 @@
         <ul>
             <li ng-repeat="a in home.dataArray">{{a.uName}}</li>
         </ul>
+        <span ng-show="home.circular">
+                    <md-progress-circular md-mode="indeterminate" class="center_align"
+                    md-diameter="120"></md-progress-circular>
+                </span>
     </div>
 
     <div flex id="signUpBox">
         <form name="frm">
             <div layout="row">
                 <md-input-container flex>
-                    <label>First Name</label>
+                    <label><i class="mdi mdi-bell"></i>First Name</label>
                     <input type="text" ng-model="home.user.fName"
                            required/>
                 </md-input-container>
@@ -48,7 +52,7 @@
             </div>
             <md-input-container flex>
                 <label>Email ID</label>
-                <input type="text" ng-model="home.user.email" required/>
+                <input type="email" name="email" ng-model="home.user.email" required/>
             </md-input-container>
             <md-input-container flex>
                 <label>Password</label>

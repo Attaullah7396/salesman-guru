@@ -1,46 +1,54 @@
 angular.module('app.home', [])
-    .controller('HomeController', function($http,$timeout,$state){
+    .controller('HomeController', function($http,$timeout,$state,$mdToast){
 
         var self = this;
         self.dataArray = "";
-        self.triger1 = false;
-        self.triger2 = false;
+        self.circular = false;
 
         self.submitForm = function(){
             if(self.user.pswd == self.cpswd) {
-                self.triger1=false;
-                self.triger2=true;
-                $timeout(function() {
-                    self.triger2=false;
-                }, 5000);
 
-                $http.post("/signup", self.user).then(function (data) {
-                    console.log("Successfully send");
-                    console.log(data)
+                $http.post("/user", self.user).then(function (data) {
+                    console.log(data);
+                    if(data.data.email){
+                        self.circular = true;
+                        $timeout(function() {
+                            self.circular = false;
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .content('Successfully registered')
+                                    .position("top right")
+                                    .hideDelay(3000)
+                                    .theme("success-toast")
+                            );
+                            $state.go("signin");
+                        }, 1500);
+
+
+                    }else{
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .content(data.data)
+                                .position("top right")
+                                .hideDelay(3000)
+                                .theme("success-toast")
+                        );
+                    }
                 }, function (err) {
-                    console.log(err)
+                    console.log("Connection Problem");
                 });
 
-                $state.go("home",{},{reload:true});
-                /*self.user.fName = "";
-                self.user.lName = "";
-                self.user.uName = "";
-                self.user.occupation = "";
-                self.user.email = "";
-                self.user.pswd = "";
-                self.cpswd = "";*/
-
-                /* $http.get("/signup").then(function(data){
-                 console.log(data)
-                 },function(err){
-                 console.log(err)
-                 });
-                 */
 
             }
-            else(
-                self.triger1= true
-            )
+            else {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content('Password does not match')
+                        .position("top right")
+                        .hideDelay(3000)
+                        .theme("success-toast")
+                );
+            }
 
 
         };

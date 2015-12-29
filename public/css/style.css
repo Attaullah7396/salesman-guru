@@ -10,6 +10,10 @@ header .mainHeading{
         font-size: 1.5em;
          padding-top: 1.5%;
 }
+header .log, header .time{
+    font-size: 1.3em;
+    padding-top: 1.8%;
+}
 
 footer{
     position: absolute;
@@ -86,4 +90,15 @@ p{
     left: 20px;
 }
 
-/* #signUpBox{ margin: 10px; border: 5px solid grey; border-bottom-left-radius: 10px; border-top-right-radius: 10px; }*/
+
+md-toast.md-success-toast-theme {
+    background-color: #66afe9;
+}
+
+.right{
+    float: right;
+}
+
+#LoginPage{
+    text-align: center;
+}

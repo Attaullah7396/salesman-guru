@@ -10,13 +10,13 @@ angular.module("salesmanGuru")
             .state('signin', {
                 url: "/signin",
                 templateUrl: "../components/signin/signin.html",
-                controller: "SignInController"
+                controller: "SignInController as signin"
             }
         )
-            .state('signup', {
-                url: "/signup",
-                templateUrl: "../components/signup/signup.html",
-                controller: "SignUpController"
+            .state('user', {
+                url: "/user",
+                templateUrl: "../components/user/user.html",
+                controller: "UserController"
             }
         );
 
