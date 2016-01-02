@@ -14,11 +14,16 @@ angular.module("salesmanGuru")
             }
         )
             .state('user', {
-                url: "/user",
+                url: "/user/:uid",
                 templateUrl: "../components/user/user.html",
                 controller: "UserController"
             }
-        );
+
+        )
+            .state('404', {
+                url: "/404",
+                templateUrl: "../components/404/404.html"
+            });
 
         $urlRouterProvider.otherwise('/')
 

@@ -6,6 +6,7 @@ var logger = require("morgan");
 var favicon = require("static-favicon");
 var cookie = require("cookie-parser");
 var session = require("express-session");
+var bcrypt = require("bcrypt-nodejs");
 var app = express();
 var publicDirPath = path.resolve(__dirname, "public");
 
@@ -36,9 +37,8 @@ app.post("/user", function (req, res) {
     salesman.save(function (err, success) {
         console.log(err);
         if(err){
-            res.send('This email is already registered, Choose any other')
+            res.send('Duplicate Email or UserName....')
         }else{
-
             res.send(success)
         }
     });
@@ -59,8 +59,60 @@ app.get("/senddata",function(req,res){
 
 app.post("/login",function(req,res){
     console.log("recived login data");
-    console.log(req.body.email);
-    salesmanModel.findOne({email:req.body.email},function(err,success){
+
+    salesmanModel.findOne({email:req.body.email},function(err,user){
+        if(err){
+            console.log("Email not found");
+            res.send("Sorry, This Email is not registered");
+        }
+        if	(user)	{
+            console.log(user);
+            if (!isValidPassword(user, req.body.pass)){
+                res.send(user);
+            }
+            else{
+                console.log("Wrong Password");
+                res.send("Wrong Password");
+            }
+        }
+
+    });
+
+    var isValidPassword = function(user, password){
+        var result = bcrypt.compareSync(password, user.pswd);
+        if (result) {
+            console.log("Password correct");
+        } else {
+            console.log("Password wrong");
+        }
+        return result;
+
+    };
+
+/*
+    bcrypt.genSalt(10,	function(err,salt)	{
+        if(err){
+            console.log("Failed");
+        }
+        bcrypt.hash(req.body.pass,salt,
+            function(err,hashedpass){
+                if	(err){
+                    console.log("Not done");
+                }
+                req.body.pass = hashedpass;
+                console.log("Successfully hashed");
+            });
+    });*/
+
+/*    res.send("jhgdjgwjg");*/
+
+
+
+
+
+
+
+   /* salesmanModel.findOne({email:req.body.email},function(err,success){
         if(success){
             console.log(success);
             if(success.pswd == req.body.pass){
@@ -79,6 +131,28 @@ app.post("/login",function(req,res){
             console.log(err);
             res.send("Sorry, this Email is not registered")
 
+        }
+    })*/
+});
+
+app.post("/checkUname",function(req,res){
+    salesmanModel.findOne({uName:req.body.uName},function(err,success){
+        if(success){
+            res.send("yes");
+        }
+        else{
+            res.send("no");
+        }
+    })
+});
+
+app.post("/checkMail",function(req,res){
+    salesmanModel.findOne({email:req.body.email},function(err,success){
+        if(success){
+            res.send("yes");
+        }
+        else{
+            res.send("no");
         }
     })
 });

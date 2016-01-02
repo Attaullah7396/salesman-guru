@@ -10,12 +10,12 @@
 </head>
 <body ng-controller="mainController as app">
 
-<md-progress-linear md-mode="determinate" class="center_align" value="{{app.abc}}"></md-progress-linear>
+<!--<md-progress-linear md-mode="determinate" class="center_align" value="{{app.abc}}"></md-progress-linear>-->
 
-<div ng-show="app.show">
+<div>
 
     <header>
-         <div layout="row">
+        <div layout="row">
             <div class="mainHeading" flex="30">SALESMAN GURU</div>
             <div class="time" flex="40">21.45.32</div>
             <div class="log" flex="30">
@@ -48,6 +48,9 @@
         qdlkjqnjqnkjqdwbkjqbkjqbkjbqdqd<br/>
         qdw;nqdlnqdjnqdkjqd qkjdbqdkjbqwkbwqd qhbvqdjhqbvwhjqdw hqdwvqwjhgwqdjhg jqdwvqwjh<br/>
         wkjdbqkhbd qdjh qgqjhgdq jhqgqjhgq qdwbgdqwkdqw <br/><br/>
+        <input onblur="alert('Hiiiii')" value="button1" type="text"/>
+        <input value="button2" type="text"/>
+
 
 
         jqevjhqvhjq qjwvjhqgvjhvw dbkqebq qeqq
@@ -69,6 +72,7 @@
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script src="bower_components/angular-material/angular-material.min.js"></script>
 <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/config.js"></script>
 <script src="components/home/home.js"></script>

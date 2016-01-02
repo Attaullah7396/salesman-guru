@@ -5,6 +5,48 @@ angular.module('app.home', [])
         self.dataArray = "";
         self.circular = false;
 
+        self.checkUname = function(){
+          $http.post("/checkUname",{uName:self.user.uName}).then(function(data){
+              console.log(data);
+              if(data.data == "yes"){
+                  $mdToast.show(
+                      $mdToast.simple()
+                          .content('This Username is already taken')
+                          .position("top right")
+                          .hideDelay(4500)
+                          .theme("red")
+                  );
+              }
+              else{
+                  console.log("userName OK")
+              }
+
+          },function(err){
+                console.log("Nothing")
+          })
+        };
+
+        self.checkMail = function(){
+          $http.post("/checkMail",{email:self.user.email}).then(function(data){
+              console.log(data);
+              if(data.data == "yes"){
+                  $mdToast.show(
+                      $mdToast.simple()
+                          .content('This Email is already Used')
+                          .position("top right")
+                          .hideDelay(4500)
+                          .theme("red")
+                  );
+              }
+              else{
+                  console.log("uEmail ID OK")
+              }
+
+          },function(err){
+                console.log("Nothing")
+          })
+        };
+
         self.submitForm = function(){
             if(self.user.pswd == self.cpswd) {
 

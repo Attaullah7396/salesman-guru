@@ -1,5 +1,5 @@
 angular.module('app.signin', [])
-    .controller('SignInController', function($mdToast,$http,$state,$timeout,$rootScope) {
+    .controller('SignInController', function($mdToast,$http,$state,$timeout,$rootScope,$location) {
         var self = this;
         self.circular = false;
         $rootScope.currentUser = null;
@@ -20,7 +20,7 @@ angular.module('app.signin', [])
                                 .hideDelay(3000)
                                 .theme("success-toast")
                         );
-                        $state.go("user");
+                        $location.path("/user/"+data.data.uName);
                     }, 1500);
 
                 }else{

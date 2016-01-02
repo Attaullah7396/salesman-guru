@@ -14,7 +14,7 @@
         <form name="frm">
             <div layout="row">
                 <md-input-container flex>
-                    <label><i class="mdi mdi-bell"></i>First Name</label>
+                    <label><img src="../../images/account-minus.png" />First Name</label>
                     <input type="text" ng-model="home.user.fName"
                            required/>
                 </md-input-container>
@@ -28,7 +28,7 @@
             <div layout="row">
                 <md-input-container flex>
                     <label>UserName</label>
-                    <input type="text" ng-model="home.user.uName" required/>
+                    <input type="text" ng-blur="home.checkUname()" ng-model="home.user.uName" required/>
                 </md-input-container>
 
 
@@ -41,8 +41,8 @@
                     </select>
                 </div>-->
 
-                <div flex layout-align="center center" style="height: 100px;">
-                    <md-select placeholder="Occupation" required ng-model="home.user.occupation" style="min-width: 200px;">
+                <div flex>
+                    <md-select style="width: 150px;padding-left:25%" placeholder="Occupation" required ng-model="home.user.occupation" style="min-width: 200px;">
                         <md-option value="Private Job">Private Job</md-option>
                         <md-option value="Govt. Job">Govt. job</md-option>
                         <md-option value="Self Business">Self Business</md-option>
@@ -52,7 +52,7 @@
             </div>
             <md-input-container flex>
                 <label>Email ID</label>
-                <input type="email" name="email" ng-model="home.user.email" required/>
+                <input type="email" name="email" ng-blur="home.checkMail()" ng-model="home.user.email" required/>
             </md-input-container>
             <md-input-container flex>
                 <label>Password</label>
@@ -66,10 +66,11 @@
                        required/>
             </md-input-container>
 
-
+            <div style="text-align: center">
             <md-button class="md-raised md-primary" ng-disabled="frm.$invalid"
                        ng-click="home.submitForm()">Submit
             </md-button>
+            </div>
 
             <span ng-show="home.triger1" style="color: red;">&#40 Password does not match &#41</span>
 
