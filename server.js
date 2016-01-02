@@ -67,7 +67,7 @@ app.post("/login",function(req,res){
         }
         if	(user)	{
             console.log(user);
-            if (!isValidPassword(user, req.body.pass)){
+            if (isValidPassword(user, req.body.pass)){
                 res.send(user);
             }
             else{
