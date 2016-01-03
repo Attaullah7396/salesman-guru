@@ -22,6 +22,8 @@ app.use(session({
     saveUninitialized:	true
 }));
 
+var port = Number(process.env.PORT || 9000);
+
 var schema = require("./schema");
 var salesmanModel = schema.salesmanModel;
 //var imgModel = schema.imgModel;
@@ -157,7 +159,7 @@ app.post("/checkMail",function(req,res){
     })
 });
 
-app.listen(9000,function(){
+app.listen(port,function(){
     console.log("Server started on port 9000")
 });
 
