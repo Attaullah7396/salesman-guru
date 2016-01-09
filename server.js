@@ -7,6 +7,7 @@ var favicon = require("static-favicon");
 var cookie = require("cookie-parser");
 var session = require("express-session");
 var bcrypt = require("bcrypt-nodejs");
+var FirebaseRef = require("firebase");
 var app = express();
 var publicDirPath = path.resolve(__dirname, "public");
 
@@ -16,34 +17,55 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger("dev"));
 app.use(favicon());
 app.use(cookie());
-app.use(session({
-    secret:	"123123",
-    resave:	true,
-    saveUninitialized:	true
-}));
+
+var ref = new FirebaseRef("https://salesmanguru.firebaseio.com");
+
+
+
 
 var port = Number(process.env.PORT || 9000);
 
 var schema = require("./schema");
 var salesmanModel = schema.salesmanModel;
-//var imgModel = schema.imgModel;
 
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
     res.sendFile(publicDirPath + "/index.html");
 });
 
 
 app.post("/user", function (req, res) {
     console.log("Received request "+ req.body);
-    var salesman = new salesmanModel(req.body);
-    salesman.save(function (err, success) {
-        console.log(err);
-        if(err){
-            res.send('Duplicate Email or UserName....')
-        }else{
-            res.send(success)
+    ref.createUser({
+        email    : req.body.email,
+        password : req.body.pswd
+    }, function(error, userData) {
+        if (error) {
+            console.log("Error creating user:", error);
+            res.send("Email already in use");
+        } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+            req.body.Token = userData.uid;
+            var salesman = new salesmanModel(req.body);
+            salesman.save(function (err, success) {
+                if(err){
+                    ref.removeUser({
+                        email: req.body.email,
+                        password: req.body.pswd
+                    }, function(error) {
+                        if (error) {
+                            console.log("User account deleted failed!");
+                        } else {
+                            console.log("User account deleted successfully!");
+                        }
+                    });
+                    res.send('Duplicate Email or UserName....')
+                }else{
+                    res.send(success)
+                }
+            });
         }
     });
+
 
 });
 

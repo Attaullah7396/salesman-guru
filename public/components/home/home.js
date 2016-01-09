@@ -96,13 +96,4 @@ angular.module('app.home', [])
         };
 
 
-        $http.get("/senddata").then(function(success){
-            console.log("No Error in get Request");
-            self.dataArray = success.data;
-
-        },function(err){
-            console.log("Error in get request")
-        })
-
-
     });

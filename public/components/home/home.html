@@ -1,9 +1,6 @@
 <div id="signUpPage" layout="row">
     <div flex="15"></div>
     <div flex="45">
-        <ul>
-            <li ng-repeat="a in home.dataArray">{{a.uName}}</li>
-        </ul>
         <span ng-show="home.circular">
                     <md-progress-circular md-mode="indeterminate" class="center_align"
                     md-diameter="120"></md-progress-circular>
@@ -70,11 +67,18 @@
             <md-button class="md-raised md-primary" ng-disabled="frm.$invalid"
                        ng-click="home.submitForm()">Submit
             </md-button>
+                  <span style="display: inline !important;">
+            <md-button class="md-fab" aria-label="Eat cake">
+                <ng-md-icon icon="done" size="40"></ng-md-icon>
+            </md-button>
+            </span>
             </div>
 
             <span ng-show="home.triger1" style="color: red;">&#40 Password does not match &#41</span>
 
-            <span ng-show="home.triger2"><img class="smallImg" src="../../images/correct.png" alt=""/></span>
+
+            <!--<span style="float:right;fill:pink"><ng-md-icon icon="done" size="25"></ng-md-icon></span>-->
+            <!--<span ng-show="home.triger2"><img class="smallImg" src="../../images/correct.png" alt=""/></span>-->
 
             <span ng-show="false">&#40 Only admin can add Questions &#41</span>
         </form>

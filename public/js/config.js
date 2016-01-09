@@ -16,7 +16,8 @@ angular.module("salesmanGuru")
             .state('user', {
                 url: "/user/:uid",
                 templateUrl: "../components/user/user.html",
-                controller: "UserController"
+                controller: "UserController",
+                key : true
             }
 
         )
@@ -33,5 +34,34 @@ angular.module("salesmanGuru")
             });
 
         $urlRouterProvider.otherwise('/')
+
+    })
+
+.run(function($rootScope){
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            $rootScope.currentLoginEmail = localStorage.getItem('key');
+            $rootScope.currentLoginName = localStorage.getItem('name');
+            if(toState.key) {
+                if($rootScope.currentLoginEmail || $rootScope.currentLoginName){
+                    console.log("ijaazat hai");
+                }
+                else{
+                    console.log("andar wala");
+                    event.preventDefault()
+                }
+            }
+            else{
+                console.log("bahar wala");
+               }
+           /* else if(toState.key == "signin"){
+                if($rootScope.currentLoginEmail){
+                    $state.go("/user/"+$rootScope.currentLoginName);
+                    //$location.path("/user/"+ $rootScope.currentLoginName);
+                    alert($rootScope.currentLoginName)
+                }
+
+            }*/
+        });
+
 
     });

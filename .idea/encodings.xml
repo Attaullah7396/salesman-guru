@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/js/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/js/controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/partials/login.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/partials/signup.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/resortapp/www/js/app.js" charset="UTF-8" />
+  </component>
+</project>

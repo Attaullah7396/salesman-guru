@@ -1,4 +1,4 @@
-angular.module('salesmanGuru', ['ui.router','ngMaterial','app.home','app.signin','app.user'])
+angular.module('salesmanGuru', ['ui.router','ngMaterial','app.home','app.signin','app.user','ngMdIcons'])
     .controller('mainController',function mainController($interval,$timeout){
 
         var self =  this;
