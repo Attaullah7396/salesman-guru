@@ -1,0 +1,43 @@
+<md-dialog>
+    <form name="companyForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add Company</h2>
+            </div>
+        </md-toolbar>
+
+        <form>
+            <md-input-container flex>
+                <label>Company title</label>
+                <input type="text" required ng-model="dialog.user.title" />
+            </md-input-container>
+
+            <md-select placeholder="Salesmen" required ng-model="dialog.user.quantity">
+                <md-option value="1">1</md-option>
+                <md-option value="2">2</md-option>
+                <md-option value="3">3</md-option>
+                <md-option value="4">4</md-option>
+                <md-option value="5">5</md-option>
+                <md-option value="6">6</md-option>
+                <md-option value="7">7</md-option>
+                <md-option value="8">8</md-option>
+                <md-option value="9">9</md-option>
+                <md-option value="10">10</md-option>
+                <md-option value="11">11</md-option>
+                <md-option value="12">12</md-option>
+                <md-option value="13">13</md-option>
+                <md-option value="14">14</md-option>
+                <md-option value="15">15</md-option>
+            </md-select>
+
+            <md-select placeholder="Type of Product" required ng-model="dialog.user.type">
+                <md-option value="Drinks">Drinks</md-option>
+                <md-option value="Cosmetics">Cosmetics</md-option>
+                <md-option value="Fabrics">Fabrics</md-option>
+                <md-option value="Electronics">Electronics</md-option>
+                <md-option value="Other">Other</md-option>
+            </md-select>
+            <md-button ng-disabled="companyForm.$invalid" class="md-raised md-primary" ng-click="dialog.createCompany(dialog.user)">CREATE</md-button>
+        </form>
+    </form>
+</md-dialog>

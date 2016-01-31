@@ -5,6 +5,17 @@
     <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/js/controller.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/partials/login.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../../Ionic/bitcoinApp/www/adminPortal/partials/signup.html" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../../Ionic/resortapp/www/js/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/schema.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/server.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/home/home.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/home/home.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/signin/signin.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/signin/signin.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/signup/signup.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/signup/signup.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/user/user.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/components/user/user.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/js/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Ionic/salesman/www/js/controller.js" charset="UTF-8" />
   </component>
 </project>

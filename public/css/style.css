@@ -60,6 +60,7 @@ a:hover{
     bottom: 10%;
     height: auto;
     width: 100%;
+    background-color: rgb(177,221,235);
 }
 body{
     overflow-y: scroll;
@@ -114,5 +115,22 @@ md-toast.md-success-toast-theme {
 md-toast.md-red-theme {
     background-color: rgba(255, 0, 0, 0.57);
     font-size: 1.15em;
-...
+}
+
+md-toast.md-pink-theme {
+    background-color: rgba(255, 106, 163, 0.4);
+    font-size: 1.15em;
+}
+
+.styleButton{
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    font-size: 1.2em;
+    outline: none;
+    color: darkgrey;
+}
+
+.styleButton:visited{
+    background-color: yellow;
 }

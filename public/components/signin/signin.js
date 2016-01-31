@@ -1,13 +1,11 @@
 angular.module('app.signin', [])
     .controller('SignInController', function($mdToast,$http,$state,$timeout,$rootScope,$location) {
         var self = this;
-        if($rootScope.currentLoginName || $rootScope.currentLoginEmail){
-            console.log("Kamyaab");
+        if($rootScope.currentLoginId){
             $rootScope.currentUser = $rootScope.currentLoginName;
-            $location.path("/user/"+ $rootScope.currentLoginName);
+            $location.path("/user/"+ $rootScope.currentLoginId);
         }
         else{
-            console.log("Lanat");
             self.circular = false;
             $rootScope.currentUser = null;
 
@@ -27,9 +25,8 @@ angular.module('app.signin', [])
                                     .hideDelay(3000)
                                     .theme("success-toast")
                             );
-                            localStorage.setItem("key",data.data.email);
-                            localStorage.setItem("name",data.data.uName);
-                            $location.path("/user/"+data.data.uName);
+                            localStorage.setItem("key",data.data.Token);
+                            $location.path("/user/"+data.data.Token);
                         }, 1500);
 
                     }else{

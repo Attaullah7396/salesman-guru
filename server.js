@@ -27,6 +27,8 @@ var port = Number(process.env.PORT || 9000);
 
 var schema = require("./schema");
 var salesmanModel = schema.salesmanModel;
+var companyModel = schema.companyModel;
+var createSalesmenModel = schema.salesmenModel;
 
 app.get("*", function (req, res) {
     res.sendFile(publicDirPath + "/index.html");
@@ -113,6 +115,8 @@ app.post("/login",function(req,res){
 
     };
 
+
+
 /*
     bcrypt.genSalt(10,	function(err,salt)	{
         if(err){
@@ -157,6 +161,46 @@ app.post("/login",function(req,res){
 
         }
     })*/
+});
+
+app.post("/company",function(req,res){
+    console.log("company request received");
+     var company = new companyModel(req.body);
+     company.save(function(err,success){
+     if(success){
+     res.send(success)
+     }
+     else{
+     res.send("Duplicate exists")
+     }
+     })
+
+});
+
+app.post("/getcompany",function(req,res){
+    companyModel.find({token:req.body.token},function(err,success){
+        if(success){
+            res.send(success)
+        }else{
+            res.send("nothing found")
+        }
+    })
+});
+
+app.post("/getsalesmen",function(req,res){
+   console.log("get salesman request")
+});
+
+app.post("/createsalesmen",function(req,res){
+    console.log("create salesmen request received");
+    var create = new createSalesmenModel(req.body);
+    create.save(function(err,success){
+        if(success){
+            res.send(success)
+        }else{
+            res.send(err)
+        }
+    })
 });
 
 app.post("/checkUname",function(req,res){

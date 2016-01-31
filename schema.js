@@ -16,6 +16,21 @@ var salesmanSchema = new mongoose.Schema({
     createdAt:	{type:Date,default:Date.now}
 });
 
+var companySchema = new mongoose.Schema({
+    title:      {type:String, required:true, unique:true},
+    quantity:   {type:Number,required:true},
+    type:       {type:String,required:true},
+    token:      {type:String,required:true}
+});
+
+var createSalesmenSchema = new mongoose.Schema({
+    fName:      {type:String,required:true},
+    lName:      {type:String,required:true},
+    email:      {type:String,required:true},
+    pswd:       {type:String,required:true},
+    company:    {type:String,required:true}
+});
+
 var	noop	=	function()	{};
 
 salesmanSchema.pre("save",	function(done)	{
@@ -45,15 +60,8 @@ salesmanSchema.methods.checkPassword = function(guess,	done)	{
     });
 };
 
-
-
-
-
-
-
-/*var imgSchema = new mongoose.Schema({
- data: Buffer,
- contentType: String
- });*/
-
 exports.salesmanModel = mongoose.model("salesman", salesmanSchema);
+
+exports.companyModel = mongoose.model("companySchema",companySchema);
+
+exports.salesmenModel = mongoose.model("createSalesmenSchema",createSalesmenSchema);

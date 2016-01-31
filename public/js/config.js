@@ -1,5 +1,5 @@
 angular.module("salesmanGuru")
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
         $stateProvider.state('home', {
                 url: "/",
@@ -16,11 +16,18 @@ angular.module("salesmanGuru")
             .state('user', {
                 url: "/user/:uid",
                 templateUrl: "../components/user/user.html",
-                controller: "UserController",
+                controller: "UserController as user",
                 key : true
             }
 
         )
+            .state('salesmen',{
+                url: "/salesmen/:uid",
+                templateUrl: "../components/salesmen/salesmen.html",
+                controller: "salesmenController as salesmen"
+            }
+        )
+
             .state('edit', {
                 url: "/user/:uid",
                 templateUrl: "../components/user/user.html",
@@ -28,40 +35,49 @@ angular.module("salesmanGuru")
             }
 
         )
+
             .state('404', {
                 url: "/404",
                 templateUrl: "../components/404/404.html"
             });
 
-        $urlRouterProvider.otherwise('/')
+        $httpProvider.interceptors.push('httpInterceptor');
 
     })
 
-.run(function($rootScope){
+.run(function($rootScope) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-            $rootScope.currentLoginEmail = localStorage.getItem('key');
-            $rootScope.currentLoginName = localStorage.getItem('name');
-            if(toState.key) {
-                if($rootScope.currentLoginEmail || $rootScope.currentLoginName){
+            $rootScope.currentLoginId = localStorage.getItem('key');
+            if (toState.key) {
+                if ($rootScope.currentLoginId) {
                     console.log("ijaazat hai");
                 }
-                else{
+                else {
                     console.log("andar wala");
                     event.preventDefault()
                 }
             }
-            else{
+            else {
                 console.log("bahar wala");
-               }
-           /* else if(toState.key == "signin"){
-                if($rootScope.currentLoginEmail){
-                    $state.go("/user/"+$rootScope.currentLoginName);
-                    //$location.path("/user/"+ $rootScope.currentLoginName);
-                    alert($rootScope.currentLoginName)
-                }
-
-            }*/
+            }
         });
 
-
-    });
+        $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
+            console.log(unfoundState.to);
+            console.log(unfoundState.toParams);
+            console.log(unfoundState.options);
+        })
+    }
+)
+.factory("httpInterceptor", function(){
+    return {
+        request : function(config){
+            console.log(config);
+            var token = localStorage.getItem("key");
+            if(token){
+                config.url = config.url + "?token="+token;
+            }
+            return config;
+        }
+    }
+});

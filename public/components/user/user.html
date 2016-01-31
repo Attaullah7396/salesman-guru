@@ -1,1 +1,8 @@
-I am Signup
+
+<br/>
+
+<md-button class="md-raised md-primary" ng-click="user.showAdvanced($event)">Add company</md-button>
+Here are your companies
+<ul>
+    <li ng-click="user.selectedCompany($index)" ng-repeat="a in user.companies track by $index">{{a.title}}</li>
+</ul>
