@@ -1,7 +1,8 @@
 angular.module('app.signin', [])
     .controller('SignInController', function($mdToast,$http,$state,$timeout,$rootScope,$location) {
         var self = this;
-        if($rootScope.currentLoginId){
+        if($rootScope.currentLoginId && $rootScope.currentLoginName){
+            $rootScope.login = true;
             $rootScope.currentUser = $rootScope.currentLoginName;
             $location.path("/user/"+ $rootScope.currentLoginId);
         }
@@ -25,7 +26,9 @@ angular.module('app.signin', [])
                                     .hideDelay(3000)
                                     .theme("success-toast")
                             );
+                            $rootScope.login = true;
                             localStorage.setItem("key",data.data.Token);
+                            localStorage.setItem("name",data.data.uName);
                             $location.path("/user/"+data.data.Token);
                         }, 1500);
 

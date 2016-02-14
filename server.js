@@ -23,12 +23,13 @@ var ref = new FirebaseRef("https://salesmanguru.firebaseio.com");
 
 
 
-var port = Number(process.env.PORT || 9000);
+var port = Number(process.env.PORT || 3000);
 
 var schema = require("./schema");
 var salesmanModel = schema.salesmanModel;
 var companyModel = schema.companyModel;
 var createSalesmenModel = schema.salesmenModel;
+var messageSchema = schema.msgSchema;
 
 app.get("*", function (req, res) {
     res.sendFile(publicDirPath + "/index.html");
@@ -189,6 +190,28 @@ app.post("/getcompany",function(req,res){
 
 app.post("/getsalesmen",function(req,res){
    console.log("get salesman request")
+});
+
+app.post("/message",function(req,res){
+   var message = new messageSchema(req.body);
+    message.save(function(err,success){
+        if(success){
+            res.send(success)
+        }else{
+            res.send(err)
+        }
+    })
+});
+
+app.post("/getmsg",function(req,res){
+   messageSchema.find({company:req.body.company},function(err,success){
+       if(success){
+           res.send(success);
+       }else{
+           console.log("no msgs found");
+           res.end();
+       }
+   })
 });
 
 app.post("/createsalesmen",function(req,res){

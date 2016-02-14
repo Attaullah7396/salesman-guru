@@ -1,19 +1,20 @@
+
 <div id="signUpPage" layout="row">
     <div flex="15">
 
     </div>
     <div flex="45">
-        <span ng-show="home.circular">
+            <span ng-show="home.circular" style="position:absolute;top: 20%;left: 35%;">
                     <md-progress-circular md-mode="indeterminate" class="center_align"
-                    md-diameter="120"></md-progress-circular>
-                </span>
+                                          md-diameter="250"></md-progress-circular>
+            </span>
     </div>
 
     <div flex id="signUpBox">
         <form name="frm">
             <div layout="row">
                 <md-input-container flex>
-                    <label><img src="../../images/account-minus.png" />First Name</label>
+                    <label>First Name</label>
                     <input type="text" ng-model="home.user.fName"
                            required/>
                 </md-input-container>
@@ -31,17 +32,18 @@
                 </md-input-container>
 
 
-              <!--  <div flex id="adj4">Occupation
-                    <select ng-model="home.user.occupation" required id="select">
-                        <option value="Private Job">Private Job</option>
-                        <option value="Govt. Job">Govt. job</option>
-                        <option value="Self Business">Self Business</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>-->
+                <!--  <div flex id="adj4">Occupation
+                      <select ng-model="home.user.occupation" required id="select">
+                          <option value="Private Job">Private Job</option>
+                          <option value="Govt. Job">Govt. job</option>
+                          <option value="Self Business">Self Business</option>
+                          <option value="Other">Other</option>
+                      </select>
+                  </div>-->
 
                 <div flex>
-                    <md-select style="width: 150px;padding-left:25%" placeholder="Occupation" required ng-model="home.user.occupation" style="min-width: 200px;">
+                    <md-select style="width: 150px;padding-left:25%" placeholder="Occupation" required
+                               ng-model="home.user.occupation" style="min-width: 200px;">
                         <md-option value="Private Job">Private Job</md-option>
                         <md-option value="Govt. Job">Govt. job</md-option>
                         <md-option value="Self Business">Self Business</md-option>
@@ -66,14 +68,14 @@
             </md-input-container>
 
             <div style="text-align: center">
-            <md-button class="md-raised md-primary" ng-disabled="frm.$invalid"
-                       ng-click="home.submitForm()">Submit
-            </md-button>
-                  <span style="display: inline !important;">
+                <md-button class="md-raised md-primary" ng-disabled="frm.$invalid"
+                           ng-click="home.submitForm()">Submit
+                </md-button>
+                  <!--<span ng-show="home.success" style="display: inline !important;">
             <md-button class="md-fab" aria-label="Eat cake">
-                <ng-md-icon icon="done" size="30"></ng-md-icon>
+                <ng-md-icon icon="done" size="25"></ng-md-icon>
             </md-button>
-            </span>
+            </span>-->
             </div>
 
             <span ng-show="home.triger1" style="color: red;">&#40 Password does not match &#41</span>

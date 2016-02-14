@@ -40,6 +40,7 @@ angular.module("salesmanGuru")
                 url: "/404",
                 templateUrl: "../components/404/404.html"
             });
+        $urlRouterProvider.otherwise("/");
 
         $httpProvider.interceptors.push('httpInterceptor');
 
@@ -48,6 +49,7 @@ angular.module("salesmanGuru")
 .run(function($rootScope) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.currentLoginId = localStorage.getItem('key');
+            $rootScope.currentLoginName = localStorage.getItem('name');
             if (toState.key) {
                 if ($rootScope.currentLoginId) {
                     console.log("ijaazat hai");

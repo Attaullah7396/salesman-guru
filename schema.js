@@ -31,6 +31,11 @@ var createSalesmenSchema = new mongoose.Schema({
     company:    {type:String,required:true}
 });
 
+var msgSchema = new mongoose.Schema({
+    msg     :   {type:String,required:true},
+    company :   {type:String,required:true}
+});
+
 var	noop	=	function()	{};
 
 salesmanSchema.pre("save",	function(done)	{
@@ -65,3 +70,5 @@ exports.salesmanModel = mongoose.model("salesman", salesmanSchema);
 exports.companyModel = mongoose.model("companySchema",companySchema);
 
 exports.salesmenModel = mongoose.model("createSalesmenSchema",createSalesmenSchema);
+
+exports.msgSchema = mongoose.model("msgSchema",msgSchema);

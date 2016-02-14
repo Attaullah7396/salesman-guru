@@ -1,23 +1,20 @@
 angular.module('app.salesmen', [])
-    .controller('salesmenController', function($mdDialog, $mdMedia) {
+    .controller('salesmenController', function($mdDialog, $mdMedia,$http,$rootScope) {
         var self = this;
       /*  $http.post("/getsalesmen").then(function(data){
             console.log(data)
         },function(err){
             console.log(err)
         });*/
+        self.messages = "";
 
-        self.showAdvanced = function(ev) {
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-            $mdDialog.show({
-                controller: dialogFunc2,
-                controllerAs : "dialog",
-                templateUrl: 'components/salesmen/dialog2.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true
-            })
-        };
+        $http.post("/getmsg",{company:$rootScope.company}).then(function(data){
+            self.messages = data.data;
+            console.log(self.messages);
+        },function(err){
+            console.log(err)
+        });
+
 
 
 

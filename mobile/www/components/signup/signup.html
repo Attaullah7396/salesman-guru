@@ -1,0 +1,39 @@
+<ion-view view-title="Aloha Resort">
+  <ion-content>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">First Name</span>
+        <input type="text" ng-model="home.user.fName" placeholder="First Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Last Name</span>
+        <input type="text" ng-model="home.user.lName" placeholder="Last Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">User Name</span>
+        <input type="text" ng-model="home.user.uName" placeholder="Last Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="email" ng-model="home.user.email" placeholder="Email">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Password</span>
+        <input type="text" ng-model="home.pswd" placeholder="Email">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Confirm password</span>
+        <input type="text" ng-model="home.cpswd" placeholder="Email">
+      </label>
+    </div>
+
+    <button class="button button-royal" ng-click="home.submitForm()">
+      button-royal
+    </button>
+
+
+    <br />
+    <a ui-sref="signin">signin</a>
+  </ion-content>
+</ion-view>

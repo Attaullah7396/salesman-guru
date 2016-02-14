@@ -4,6 +4,7 @@ angular.module('app.home', [])
         var self = this;
         self.dataArray = "";
         self.circular = false;
+        self.success = false;
 
         self.checkUname = function(){
           $http.post("/checkUname",{uName:self.user.uName}).then(function(data){
