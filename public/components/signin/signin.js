@@ -3,12 +3,11 @@ angular.module('app.signin', [])
         var self = this;
         if($rootScope.currentLoginId && $rootScope.currentLoginName){
             $rootScope.login = true;
-            $rootScope.currentUser = $rootScope.currentLoginName;
             $location.path("/user/"+ $rootScope.currentLoginId);
         }
         else{
             self.circular = false;
-            $rootScope.currentUser = null;
+            $rootScope.currentUser = false;
 
             self.login = function(){
                 $http.post("/login", self.user).then(function(data) {
@@ -16,9 +15,9 @@ angular.module('app.signin', [])
                     console.log(data.data);
                     if(data.data.email && data.data.pswd){
                         self.circular = true;
+                        $rootScope.login = true;
                         $timeout(function() {
                             self.circular = false;
-                            $rootScope.currentUser = data.data.uName;
                             $mdToast.show(
                                 $mdToast.simple()
                                     .content('Login Successful, Welcome....')
@@ -26,7 +25,6 @@ angular.module('app.signin', [])
                                     .hideDelay(3000)
                                     .theme("success-toast")
                             );
-                            $rootScope.login = true;
                             localStorage.setItem("key",data.data.Token);
                             localStorage.setItem("name",data.data.uName);
                             $location.path("/user/"+data.data.Token);

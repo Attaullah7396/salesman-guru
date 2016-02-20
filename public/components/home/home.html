@@ -1,17 +1,29 @@
 
 <div id="signUpPage" layout="row">
-    <div flex="15">
+    <div flex="60" style="background-color: rgba(74, 175, 255, 0.29)">
 
+        <div style="position: relative;top:100px;left: 150px;font-size: 2em">
+            <h2 style="">Sign-Up here!</h2>
+            <span>Its's free and</span>
+            <p>Always will be......</p>
+        </div>
+        <div style="position: absolute;top: 0px;">
+            <marquee style="z-index: 999;float: left" direction="left" height="170" behavior="continuous" style="border:solid;">
+                <img style="height: 140px; width:250px;opacity: 0.15;" src="images/cloud2.png" alt=""/>
+            </marquee>
+            <marquee style="z-index: 999" direction="right" height="170" behavior="continuous" style="border:solid;">
+                <img style="height: 140px; width:250px;opacity: 0.15;" src="images/cloud2.png" alt=""/>
+            </marquee>
+            <marquee style="z-index: 999" direction="left" height="170" behavior="continuous" style="border:solid;">
+                <img style="height: 140px; width:250px;opacity: 0.15;" src="images/cloud2.png" alt=""/>
+            </marquee>
+        </div>
     </div>
-    <div flex="45">
-            <span ng-show="home.circular" style="position:absolute;top: 20%;left: 35%;">
-                    <md-progress-circular md-mode="indeterminate" class="center_align"
-                                          md-diameter="250"></md-progress-circular>
-            </span>
-    </div>
+
+    <md-divider></md-divider>
 
     <div flex id="signUpBox">
-        <form name="frm">
+        <form name="frm" style="padding: 15px;font-size: 1.2em;padding-top: 10%">
             <div layout="row">
                 <md-input-container flex>
                     <label>First Name</label>
@@ -51,17 +63,19 @@
                     </md-select>
                 </div>
             </div>
-            <md-input-container flex>
-                <label>Email ID</label>
-                <input type="email" name="email" ng-blur="home.checkMail()" ng-model="home.user.email" required/>
-            </md-input-container>
-            <md-input-container flex>
-                <label>Password</label>
-                <input type="text" ng-model="home.user.pswd"
-                       required/>
-            </md-input-container>
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Email ID</label>
+                    <input type="email" name="email" ng-blur="home.checkMail()" ng-model="home.user.email" required/>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Password</label>
+                    <input type="text" ng-model="home.user.pswd"
+                           required/>
+                </md-input-container>
+            </div>
 
-            <md-input-container flex>
+            <md-input-container>
                 <label>Confirm Password</label>
                 <input type="text" ng-model="home.cpswd"
                        required/>
@@ -71,20 +85,8 @@
                 <md-button class="md-raised md-primary" ng-disabled="frm.$invalid"
                            ng-click="home.submitForm()">Submit
                 </md-button>
-                  <!--<span ng-show="home.success" style="display: inline !important;">
-            <md-button class="md-fab" aria-label="Eat cake">
-                <ng-md-icon icon="done" size="25"></ng-md-icon>
-            </md-button>
-            </span>-->
             </div>
 
-            <span ng-show="home.triger1" style="color: red;">&#40 Password does not match &#41</span>
-
-
-            <!--<span style="float:right;fill:pink"><ng-md-icon icon="done" size="25"></ng-md-icon></span>-->
-            <!--<span ng-show="home.triger2"><img class="smallImg" src="../../images/correct.png" alt=""/></span>-->
-
-            <span ng-show="false">&#40 Only admin can add Questions &#41</span>
         </form>
     </div>
 

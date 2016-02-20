@@ -28,14 +28,21 @@ angular.module("salesmanGuru")
             }
         )
 
-            .state('edit', {
-                url: "/user/:uid",
-                templateUrl: "../components/user/user.html",
-                controller: "UserController"
+            .state('location', {
+                url: "/location/:lat/:lng",
+                templateUrl: "../components/location/location.html",
+                controller: "locationController as location"
             }
 
         )
 
+            .state('quantity', {
+                url: "/details/:uid",
+                templateUrl: "../components/quantity/quantity.html",
+                controller: "quantityController as quantity"
+            }
+
+        )
             .state('404', {
                 url: "/404",
                 templateUrl: "../components/404/404.html"

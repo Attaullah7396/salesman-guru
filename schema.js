@@ -30,11 +30,21 @@ var createSalesmenSchema = new mongoose.Schema({
     pswd:       {type:String,required:true},
     company:    {type:String,required:true}
 });
-
 var msgSchema = new mongoose.Schema({
-    msg     :   {type:String,required:true},
-    company :   {type:String,required:true}
+    msg:      {type: String, required: true},
+    company:  {type: String, required: true},
+    fName:    {type: String, required: true},
+    lName:    {type: String, required: true},
+    location: {type: Object, required: true},
+    date:     {type: String, required: true}
 });
+
+var salesmanLoginSchema = new mongoose.Schema({
+    email:    {type:String,required:true},
+    pswd:     {type:String,required:true}
+});
+
+
 
 var	noop	=	function()	{};
 
@@ -70,5 +80,7 @@ exports.salesmanModel = mongoose.model("salesman", salesmanSchema);
 exports.companyModel = mongoose.model("companySchema",companySchema);
 
 exports.salesmenModel = mongoose.model("createSalesmenSchema",createSalesmenSchema);
+
+exports.salesmanLoginSchema = mongoose.model("salesmanLoginSchema",salesmanLoginSchema);
 
 exports.msgSchema = mongoose.model("msgSchema",msgSchema);

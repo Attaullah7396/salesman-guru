@@ -1,12 +1,26 @@
 
-<br/>
 
+<h1 style="text-align: center;text-decoration: underline;color:rgba(22, 106, 100, 0.82)">Messages</h1>
+<div layout="row" layout-wrap>
+    <md-card ng-repeat="a in order" flex="30">
+        <md-card-title>
+            <md-card-title-text>
+                <h2 class="md-headline" style="text-decoration: underline">{{a.fName}} {{a.lName}}</h2>
+                <span style="word-wrap: break-word;width: 14em" style="font-size: 1.2em">{{a.msg}}</span>
+                <br />
+                <span style="font-weight: bold;font-size: 0.8em;">{{a.date}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-lg card-media"><img src="../../images/brief.jpg" alt=""/></div>
+            </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" ui-sref="location({lat: a.location.lat ,lng: a.location.long})">View Location</md-button>
+        </md-card-actions>
+    </md-card>
+</div>
 
-<md-button ng-click="salesmen.showAdvanced($event)" class="md-fab" aria-label="add salesmen">
-    <ng-md-icon icon="add" size="25"></ng-md-icon>
-</md-button>
-
-<h1>Messages</h1>
+<!--
 <ul>
     <li ng-repeat="a in salesmen.messages">{{a.msg}}</li>
-</ul>
+</ul>-->

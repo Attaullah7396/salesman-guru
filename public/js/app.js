@@ -1,24 +1,35 @@
-angular.module('salesmanGuru', ['ui.router','ngMaterial','firebase','app.home','app.signin','app.user','app.salesmen','ngMdIcons'])
-    .controller('mainController',function($interval,$timeout,$rootScope,$http,$state){
+angular.module('salesmanGuru', ['ui.router','ngMaterial','leaflet-directive','firebase','app.home','app.signin','app.user','app.salesmen','app.location','app.quantity','ngMdIcons'])
+    .controller('mainController',function($interval,$timeout,$rootScope,$http,$state,$mdToast){
 
         var self =  this;
+        $rootScope.order = [];
         $rootScope.async = function(){
             var ref = new Firebase("https://salesmanguru.firebaseio.com/").child($rootScope.company);
             var ref2 = ref.child("alert");
-            $rootScope.order = [];
             ref2.on('child_added', function(message) {
-                $rootScope.order.push(message.val().msg);
-                console.log(message);
-                alert(message.val().msg);
-                $http.post("/message",{msg:message.val().msg,company:$rootScope.company}).then(function(data){
-                    console.log(data);
-                    ref.remove();
-                    $state.go($state.current,[],{reload:true})
-                },function(err){
-                    console.log(err)
-                })
+                $rootScope.order.push(message.val());
+                console.log(message.val());
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content('New message received')
+                        .position("top right")
+                        .hideDelay(3000)
+                        .theme("pink")
+                );
+                ref.remove();
             });
 
+        };
+
+        self.signin = function(){
+            $state.go("signin");
+        };
+
+        self.logOut = function(){
+            localStorage.removeItem("key");
+            localStorage.removeItem("name");
+            $rootScope.login = false;
+            $state.go("home");
         };
 
 

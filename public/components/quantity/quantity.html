@@ -1,0 +1,27 @@
+<div style="overflow-y: auto">
+    <md-button style="float: right;" ng-click="quantity.showAdvanced($event)" class="md-fab" aria-label="add salesmen">
+        <ng-md-icon icon="add" size="25"></ng-md-icon>
+    </md-button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <md-card style="float: left" ng-repeat="a in quantity.salesmen" flex="30">
+        <md-card-title>
+            <md-card-title-text>
+                <h1 class="md-headline" style="text-decoration: underline">{{a.fName}} {{a.lName}}</h1>
+                <span style="font-size: 1.2em">{{a.email}}</span>
+                <br/>
+                <span>{{a.pswd}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-lg card-media"><img src="../../images/sale.jpg" alt=""/></div>
+            </md-card-title-media>
+        </md-card-title>
+        <!--    <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ui-sref="">View Salesmen</md-button>
+                <md-button class="md-raised" ng-click="user.selectedCompany($index)">View Orders</md-button>
+            </md-card-actions>-->
+    </md-card>
+</div>

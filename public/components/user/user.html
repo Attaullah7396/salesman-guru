@@ -1,8 +1,30 @@
+<div style="overflow-y: auto">
+<md-button style="float: right;" ng-click="user.showAdvanced($event)" class="md-fab" aria-label="Add Company">
+    <ng-md-icon icon="add" size="25"></ng-md-icon>
+</md-button>
+
+<!--<md-button class="md-raised md-primary" ng-click="user.showAdvanced($event)">Add company</md-button>-->
 
 <br/>
+<br/>
+<br/>
+<br/>
+<md-card ng-repeat="a in user.companies track by $index" flex="30">
+    <md-card-title>
+        <md-card-title-text>
+            <h1 class="md-headline" style="text-decoration: underline">{{a.title}}</h1>
+            <span style="font-size: 1.2em">{{a.type}}</span>
+            <br />
+            <span style="font-weight: bold;font-size: 0.8em;">No. of Salesman : {{a.quantity}}</span>
+        </md-card-title-text>
+        <md-card-title-media>
+            <div class="md-media-lg card-media"><img src="../../images/busi.png" alt=""/></div>
+        </md-card-title-media>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" ui-sref="quantity">View Salesmen</md-button>
+        <md-button class="md-raised" ng-click="user.selectedCompany($index)">View Orders</md-button>
+    </md-card-actions>
+</md-card>
 
-<md-button class="md-raised md-primary" ng-click="user.showAdvanced($event)">Add company</md-button>
-Here are your companies
-<ul>
-    <li ng-click="user.selectedCompany($index)" ng-repeat="a in user.companies track by $index">{{a.title}}</li>
-</ul>
+</div>

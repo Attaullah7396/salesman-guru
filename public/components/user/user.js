@@ -8,7 +8,7 @@ angular.module('app.user', [])
             self.companies = success.data;
             $rootScope.company = self.companies[0].title;
             $rootScope.async();
-            console.log(success)
+            console.log(success.data)
         },function(err){
             console.log("Network error")
         });
@@ -68,13 +68,26 @@ var dialogFunc = function($mdDialog,$http,$mdToast,$state,$rootScope) {
     dial.createCompany = function(user) {
         $http.post("/company", user).then(function (data) {
             $rootScope.company = user.title;
-            $mdToast.show(
-                $mdToast.simple()
-                    .content('Company created')
-                    .position("top right")
-                    .hideDelay(3000)
-                    .theme("pink")
-            );
+            console.log(data.data);
+            if(data.data){
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content('Company created')
+                        .position("top right")
+                        .hideDelay(3000)
+                        .theme("pink")
+                );
+            }
+            else{
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content('Error creating company')
+                        .position("top right")
+                        .hideDelay(3000)
+                        .theme("pink")
+                );
+            }
+
             $mdDialog.hide();
             $state.go($state.current,[],{reload:true})
         }, function (err) {

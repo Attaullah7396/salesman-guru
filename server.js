@@ -1,6 +1,7 @@
 var fs = require("fs");
 var path = require("path");
 var express = require("express");
+var cors = require('cors');
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var favicon = require("static-favicon");
@@ -9,6 +10,7 @@ var session = require("express-session");
 var bcrypt = require("bcrypt-nodejs");
 var FirebaseRef = require("firebase");
 var app = express();
+app.use(cors());
 var publicDirPath = path.resolve(__dirname, "public");
 
 app.use(express.static(publicDirPath));
@@ -17,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger("dev"));
 app.use(favicon());
 app.use(cookie());
+
 
 var ref = new FirebaseRef("https://salesmanguru.firebaseio.com");
 
@@ -116,22 +119,49 @@ app.post("/login",function(req,res){
 
     };
 
-
-
-/*
-    bcrypt.genSalt(10,	function(err,salt)	{
-        if(err){
-            console.log("Failed");
-        }
-        bcrypt.hash(req.body.pass,salt,
-            function(err,hashedpass){
-                if	(err){
-                    console.log("Not done");
+    app.post("/signin",function(req,res){
+        console.log("request received...." + req.body);
+        createSalesmenModel.findOne({email:req.body.email},function(err,success){
+            if(success){
+                if(success.pswd == req.body.pswd){
+                    res.send(success);
+                }else{
+                    res.send("wrong password")
                 }
-                req.body.pass = hashedpass;
-                console.log("Successfully hashed");
-            });
-    });*/
+            }
+            else{
+                res.send("This Email is not registered");
+            }
+        })
+
+    });
+    app.post("/message",function(req,res){
+        console.log(req.body);
+        var message = new messageSchema(req.body);
+        message.save(function(err,success){
+            if(success){
+                res.send(success)
+            }else{
+                res.send(err)
+            }
+        })
+    });
+
+
+    /*
+        bcrypt.genSalt(10,	function(err,salt)	{
+            if(err){
+                console.log("Failed");
+            }
+            bcrypt.hash(req.body.pass,salt,
+                function(err,hashedpass){
+                    if	(err){
+                        console.log("Not done");
+                    }
+                    req.body.pass = hashedpass;
+                    console.log("Successfully hashed");
+                });
+        });*/
 
 /*    res.send("jhgdjgwjg");*/
 
@@ -166,15 +196,27 @@ app.post("/login",function(req,res){
 
 app.post("/company",function(req,res){
     console.log("company request received");
-     var company = new companyModel(req.body);
-     company.save(function(err,success){
-     if(success){
-     res.send(success)
-     }
-     else{
-     res.send("Duplicate exists")
-     }
-     })
+/*    companyModel.find({},function(err,success){
+        console.log("Error "+ err);
+        console.log(success);
+        if(err){*/
+            var company = new companyModel(req.body);
+            company.save(function(err,success){
+                if(success){
+                    res.send(success)
+                }
+                else{
+                    res.send(err)
+                }
+            });
+/*
+
+        }else{
+            res.send("You can create only One company")
+        }
+    });
+
+*/
 
 });
 
@@ -188,19 +230,15 @@ app.post("/getcompany",function(req,res){
     })
 });
 
-app.post("/getsalesmen",function(req,res){
-   console.log("get salesman request")
-});
-
-app.post("/message",function(req,res){
-   var message = new messageSchema(req.body);
-    message.save(function(err,success){
-        if(success){
-            res.send(success)
-        }else{
+app.post("/getSalesmen",function(req,res){
+   console.log("get salesman request");
+    createSalesmenModel.find({company:req.body.company},function(err,success){
+        if(err){
             res.send(err)
+        }else{
+            res.send(success)
         }
-    })
+})
 });
 
 app.post("/getmsg",function(req,res){
@@ -249,7 +287,7 @@ app.post("/checkMail",function(req,res){
 });
 
 app.listen(port,function(){
-    console.log("Server started on port 9000")
+    console.log("Server started on port 3000")
 });
 
 
