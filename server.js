@@ -23,11 +23,6 @@ app.use(cookie());
 
 var ref = new FirebaseRef("https://salesmanguru.firebaseio.com");
 
-
-
-
-var port = Number(process.env.PORT || 3000);
-
 var schema = require("./schema");
 var salesmanModel = schema.salesmanModel;
 var companyModel = schema.companyModel;
@@ -286,10 +281,11 @@ app.post("/checkMail",function(req,res){
     })
 });
 
-app.listen(port,function(){
-    console.log("Server started on port 3000")
-});
+app.set('port', process.env.PORT || 3000);
 
+app.listen(app.get('port'), function() {
+    console.log("App started on port")
+});
 
 
 
