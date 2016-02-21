@@ -113,82 +113,34 @@ app.post("/login",function(req,res){
         return result;
 
     };
-
-    app.post("/signin",function(req,res){
-        console.log("request received...." + req.body);
-        createSalesmenModel.findOne({email:req.body.email},function(err,success){
-            if(success){
-                if(success.pswd == req.body.pswd){
-                    res.send(success);
-                }else{
-                    res.send("wrong password")
-                }
-            }
-            else{
-                res.send("This Email is not registered");
-            }
-        })
-
-    });
-    app.post("/message",function(req,res){
-        console.log(req.body);
-        var message = new messageSchema(req.body);
-        message.save(function(err,success){
-            if(success){
-                res.send(success)
-            }else{
-                res.send(err)
-            }
-        })
-    });
-
-
-    /*
-        bcrypt.genSalt(10,	function(err,salt)	{
-            if(err){
-                console.log("Failed");
-            }
-            bcrypt.hash(req.body.pass,salt,
-                function(err,hashedpass){
-                    if	(err){
-                        console.log("Not done");
-                    }
-                    req.body.pass = hashedpass;
-                    console.log("Successfully hashed");
-                });
-        });*/
-
-/*    res.send("jhgdjgwjg");*/
-
-
-
-
-
-
-
-   /* salesmanModel.findOne({email:req.body.email},function(err,success){
+});
+app.post("/signin",function(req,res){
+    console.log("request received...." + JSON.stringify(req.body));
+    createSalesmenModel.findOne({email:req.body.email},function(err,success){
         if(success){
-            console.log(success);
-            if(success.pswd == req.body.pass){
-                console.log("Successfully login");
-                console.log(req.cookies);
-                console.log(req.session);
-                req.session.name = success.uName;
+            if(success.pswd == req.body.pswd){
                 res.send(success);
-            }
-            else{
-                console.log("Wrong Password");
-                res.send("Wrong Password")
+            }else{
+                res.send("wrong password")
             }
         }
         else{
-            console.log(err);
-            res.send("Sorry, this Email is not registered")
-
+            res.send("This Email is not registered");
         }
-    })*/
-});
+    })
 
+});
+app.post("/message",function(req,res){
+    console.log(req.body);
+    var message = new messageSchema(req.body);
+    message.save(function(err,success){
+        if(success){
+            res.send(success)
+        }else{
+            res.send(err)
+        }
+    })
+});
 app.post("/company",function(req,res){
     console.log("company request received");
 /*    companyModel.find({},function(err,success){
